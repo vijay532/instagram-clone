@@ -6,6 +6,8 @@
   object-fit: contain;
   padding:20px;
   border-bottom:1px solid lightgray;
+  display:flex;
+  justify-content: space-between;
 }
 
 .app{
@@ -16,4 +18,19 @@
 .app__signUp{
   display:flex;
   flex-direction:column;
+  
+}
+
+.app__headerLogo{
+  object-fit:contain;
+}
+
+.app__posts{
+  padding:20px;
+  display:flex;
+  justify-content:center;
+}
+
+.app__rightPosts{
+  margin-left:20px;
 }
