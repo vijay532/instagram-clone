@@ -6,6 +6,7 @@ import Modal from '@material-ui/core/Modal';
 import {makeStyles} from '@material-ui/core/styles'
 import { Button } from '@material-ui/core';
 import ImageUpload from './ImageUpload'
+import InstagramEmbed from 'react-instagram-embed';
 function rand() {
     return Math.round(Math.random() * 20) - 10;
   }
@@ -138,10 +139,7 @@ function App() {
     }
     return (
         <div className="app">
-            {
-                user?.displayName?<ImageUpload username={user.displayName}/>:
-                <h3>Sorry,You need to login to upload</h3>
-            }
+            
 
             <Modal
                 open={open}
@@ -220,25 +218,52 @@ function App() {
             </Modal>
 
             <div className="app__header">
-                <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"/>
+                <img className="app__headerLogo"src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"/>
+                {
+                    user?
+                    <Button onClick={()=>auth.signOut()}>Log Out</Button>:
+                    (<div className="app__logincontainer">
+                        <Button onClick={()=>setOpenSignIn(true)}>Sign In</Button>
+
+                        <Button onClick={()=>setOpen(true)}>Sign up</Button>
+                        
+                    </div>
+                    )
+                }
             </div>
 
-            {user?
-                <Button onClick={()=>auth.signOut()}>Log Out</Button>:
-                (<div className="app__container">
-                    <Button onClick={()=>setOpenSignIn(true)}>Sign In</Button>
-
-                    <Button onClick={()=>setOpen(true)}>Sign up</Button>
-                    
+            <div className="app__posts">
+                <div className="app__leftPosts">
+                    {
+                        posts.map(({id,post})=>(   
+                            <Posts  key={id} username={post.username} comments={post.comments} imageUrl={post.imageUrl} />
+                        ))
+                    }
                 </div>
-                )
+                
+                <div className="app__rightPosts">
+                    <InstagramEmbed
+                    url='https://instagr.am/p/Zw9o4/'
+                    maxWidth={320}
+                    hideCaption={false}
+                    containerTagName='div'
+                    protocol=''
+                    injectScript
+                    onLoading={() => {}}
+                    onSuccess={() => {}}
+                    onAfterRender={() => {}}
+                    onFailure={() => {}}
+                    />
+                </div>
+
+            
+            </div>
+            
+            {
+                user?.displayName?<ImageUpload username={user.displayName}/>:
+                <h3>Sorry,You need to login to upload</h3>
             }
 
-            {
-                posts.map(({id,post})=>(   
-                    <Posts  key={id} username={post.username} comments={post.comments} imageUrl={post.imageUrl} />
-                ))
-            }
         </div>
     )
 }
