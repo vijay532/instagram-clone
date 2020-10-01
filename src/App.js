@@ -7,6 +7,7 @@ import {makeStyles} from '@material-ui/core/styles'
 import { Button } from '@material-ui/core';
 import ImageUpload from './ImageUpload'
 import InstagramEmbed from 'react-instagram-embed';
+
 function rand() {
     return Math.round(Math.random() * 20) - 10;
   }
@@ -233,15 +234,15 @@ function App() {
             </div>
 
             <div className="app__posts">
-                <div className="app__leftPosts">
+                <div className="app__PostsLeft">
                     {
                         posts.map(({id,post})=>(   
-                            <Posts  key={id} username={post.username} comments={post.comments} imageUrl={post.imageUrl} />
+                            <Posts  key={id} user={user} postId={id} username={post.username} caption={post.comments} imageUrl={post.imageUrl} />
                         ))
                     }
                 </div>
                 
-                <div className="app__rightPosts">
+                <div className="app__PostsRight">
                     <InstagramEmbed
                     url='https://instagr.am/p/Zw9o4/'
                     maxWidth={320}
@@ -269,3 +270,6 @@ function App() {
 }
 
 export default App
+
+
+// https://www.instagram.com/p/CE6x8LroQig/
