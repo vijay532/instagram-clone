@@ -1,4 +1,4 @@
-[Click Here](https://instagram-clone-b0b53.web.app/) To See The App
+[Click Here](https://instagram-clone-b0b53.web.app/) To View The App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
